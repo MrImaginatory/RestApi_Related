@@ -3,8 +3,8 @@ import { aggregate, getData, searchData } from "../controller/feature.controller
 
 const featureRouter = Router();
 
-app.use("/getData").get(getData);
-app.use("/search").get(searchData);
-app.use("/aggregate").get(aggregate)
+featureRouter.route("/getData").get(getData);
+featureRouter.route("/search").get(searchData);
+featureRouter.route("/aggregate").get(aggregate)
 
 export default featureRouter;
