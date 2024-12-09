@@ -1,4 +1,5 @@
 import Data from "../model/data.model.js";
+import fileModel from "../model/file.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 const getData = asyncHandler(async(req,res)=>{
@@ -106,4 +107,19 @@ const aggregate = asyncHandler(async(req,res)=>{
     });
 })
 
-export { getData , searchData , aggregate };
+const uploadImage = asyncHandler(async(req,res)=>{
+    if(!req.file){
+        res.status(400).json({message:"No image to upload"});
+    }
+    const fileName = new file({
+        fileName:req.file.fileName,
+        path:req.file.path,
+        size:req.file.size,
+    })
+
+    await fileModel.save();
+
+    res.status(200).json({message:"File uploaded SuccessFully"});
+})
+
+export { getData , searchData , aggregate , uploadImage };

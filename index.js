@@ -1,6 +1,7 @@
 import connectDB from "./database/db.js";
 import {app} from "./app.js";
 import dotenv from "dotenv";
+import fs from "fs";
 
 dotenv.config();
 
@@ -15,3 +16,7 @@ connectDB()
     .catch((error)=>{
         console.log("Error: ",error);
     })
+
+if(!fs.existsSync('./uploads')){
+    fs.mkdirSync('./uploads');
+}
