@@ -41,7 +41,16 @@ const signUpController = asyncHandler( async(req,res)=>{
 
     const hashedPassword = await bcrypt.hash(password,10);
 
-    const newUser = new User({email:email,password:hashedPassword});
+    const userData = {
+        first_name:req.body.first_name,
+        last_name:req.body.last_name,
+        email:req.body.email,
+        password:hashedPassword,
+        phoneNumber:req.body.phoneNumber,
+        gender:req.body.gender,
+    }
+
+    const newUser = new User(userData);
 
     await newUser.save();
 
