@@ -61,6 +61,17 @@ This repository contains a RESTful API with modular routes for authentication an
 - **GET** `/feature/aggregate`: Perform aggregation operations.
   - URL: [http://localhost:3001/feature/aggregate](http://localhost:3001/feature/aggregate)
 
+### Crud Routes
+- **GET** `/crud/serachData`: Search data.
+  - URL: [http://localhost:3001/crud/searchData/?id=objectId](http://localhost:3001/crud/searchData/?id=objectId)
+  - URL: [http://localhost:3001/crud/searchData/?email=emailId](http://localhost:3001/crud/searchData/?email=emailId)
+
+- **POST** `/crud/updateData`: Update functionality.
+  - URL: [http://localhost:3001/crud/updateData/:id](http://localhost:3001/crud/updateData/:id)
+
+- **POST** `/crud/deleteData`: Perform aggregation operations.
+  - URL: [http://localhost:3001/crud/deleteData/:id](http://localhost:3001/crud/deleteData/:id)
+
 ## Testing the API
 
 Use tools like [Postman](https://www.postman.com/) or [cURL](https://curl.se/) to test the endpoints. Ensure the server is running locally at `http://localhost:3001`.
