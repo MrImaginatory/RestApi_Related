@@ -62,7 +62,7 @@ This repository contains a RESTful API with modular routes for authentication an
   - URL: [http://localhost:3001/feature/aggregate](http://localhost:3001/feature/aggregate)
 
 ### Crud Routes
-- **GET** `/crud/serachData`: Search data.
+- **GET** `/crud/searchData`: Search data.
   - URL: [http://localhost:3001/crud/searchData/?id=objectId](http://localhost:3001/crud/searchData/?id=objectId)
   - URL: [http://localhost:3001/crud/searchData/?email=emailId](http://localhost:3001/crud/searchData/?email=emailId)
 
