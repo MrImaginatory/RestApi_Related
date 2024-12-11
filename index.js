@@ -2,6 +2,7 @@ import connectDB from "./database/db.js";
 import {app} from "./app.js";
 import dotenv from "dotenv";
 import fs from "fs";
+import axios from "axios";
 
 dotenv.config();
 
