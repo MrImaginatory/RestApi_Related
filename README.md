@@ -102,6 +102,20 @@ This repository contains a comprehensive RESTful API with modular routes for aut
   - URL: [http://localhost:3001/axiosData/fetchUserData?firstName=firstname](http://localhost:3001/axiosData/fetchUserData?firstName=firstname)
   - URL: [http://localhost:3001/axiosData/fetchUserData?lastName=lastname](http://localhost:3001/axiosData/fetchUserData?lastName=lastname)
   - URL: [http://localhost:3001/axiosData/fetchUserData?email=email](http://localhost:3001/axiosData/fetchUserData?email=email)
+
+### Coupon Data Routes
+
+- **POST** `/shopping/addCoupon`: Add a Disount Coupon
+  - URL: [http://localhost:3001/shopping/addCoupon](http://localhost:3001/shopping/addCoupon)
+
+- **POST** `/shopping/validate`: Validate Disount Coupon
+  - URL: [http://localhost:3001/shopping/validate](http://localhost:3001/shopping/validate)
+ 
+### Email Routes
+
+- **POST** `/email/sendEmail`: Send an Email
+  - URL: [http://localhost:3001/email/sendEmail](http://localhost:3001/email/sendEmail)
+
 ---
 
 ## Testing the API
