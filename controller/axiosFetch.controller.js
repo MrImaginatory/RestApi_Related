@@ -1,6 +1,7 @@
 import axios from "axios";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
+// function to fetch Data
 const fetchData = async() => {
     try{
     const respData = await axios.get('https://dummyjson.com/users');
@@ -16,11 +17,13 @@ const fetchData = async() => {
     }
 }
 
+// controller for showing all data
 const fetchAxiosData = asyncHandler(async(req,res)=>{
     const data = await fetchData();
     res.status(200).json({message:"Data fetching Successfully",data})
 })
 
+// controller to fetch data by userId
 const fetchUserId = asyncHandler(async (req,res) => {
     const userId = await fetchData();
 
@@ -31,39 +34,46 @@ const fetchUserId = asyncHandler(async (req,res) => {
     res.json(user);
 })
 
+// controller to fetch userData by matching firstName,lastName or email char
 const fetchUserData = asyncHandler(async (req, res) => {
     const userData = await fetchData();
 
-    
-    const respData = userData.users?.find(
-        (user) => 
-            user.firstName === req.query.firstName||
-        user.lastName=== req.query.lastName ||
-        user.email === req.query.email
-    );
-    
-// trying to add search functionality
+    const filteredData = userData.users?.filter((user) => user.firstName.includes(req.query.firstName) || 
+                                                            user.lastName.includes(req.query.lastName) ||
+                                                            user.email.includes(req.query.email));
 
-    // const queryKeys = ["firstName","lastName","email"];
-    // const respData = userData.users?.filter((user)=>{
-    //     queryKeys.some((key)=>{
-    //         const userValue = user[key]?.toLowerCase();
-    //         const queryValue = req.query[key]?.toLowerCase();
-    //         return(
-    //             userValue &&
-    //             queryValue &&
-    //             queryValue.split('').some((char)=>{
-    //                 userValue.includes(char)
-    //             })
-    //         )
-    //     })
-    // })
-
-    if(!respData){
-        res.status(404).json({message:"No data Found"});
+    if(!filteredData){
+        res.status(404).json({message:"No data found!"});
     }
 
-    res.status(200).json({message:"Founded Data",respData});
+    res.status(200).json({message : "matching data found",totalItems:filteredData.length,data : filteredData});
 });
+
+// refactored Version of the code
+// const fetchUserData = asyncHandler(async (req, res) => {
+//     const userData = await fetchData(); // Fetch the data
+//     const { firstName, lastName, email } = req.query; // Destructure query parameters
+
+//     // Apply filtering based on query parameters
+//     const filteredData = userData.users?.filter((user) => {
+//         return (
+//             (firstName && user.firstName?.includes(firstName)) ||
+//             (lastName && user.lastName?.includes(lastName)) ||
+//             (email && user.email?.includes(email))
+//         );
+//     });
+
+//     // Handle case when no matching data is found
+//     if (!filteredData || filteredData.length === 0) {
+//         return res.status(404).json({ message: "No matching data found!" });
+//     }
+
+//     // Respond with matching data
+//     res.status(200).json({
+//         message: "Matching data found",
+//         totalItems: filteredData.length,
+//         data: filteredData,
+//     });
+// });
 
 export { fetchAxiosData , fetchUserId ,fetchUserData};
